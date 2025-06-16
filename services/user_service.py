@@ -4,10 +4,10 @@ from models.user import UserModel, User
 class UserService:
     def __init__(self):
         self.user_model = UserModel()
-    
+
 
     def get_all(self):
-        users = self.user_model.get_all()        
+        users = self.user_model.get_all()
         return users
 
 
@@ -36,7 +36,7 @@ class UserService:
         user.birthdate = birthdate
 
         self.user_model.update_user(user)
-    
+
 
     def delete_user(self, user_id):
         self.user_model.delete_user(user_id)

@@ -5,7 +5,7 @@ from services.user_service import UserService
 class UserController(BaseController):
     def __init__(self, app):
         super().__init__(app)
-        
+
         self.setup_routes()
         self.user_service = UserService()
 

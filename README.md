@@ -1,10 +1,12 @@
 # Projeto Template: POO com Python + Bottle + JSON
 
-Este é um projeto de template educacional voltado para o ensino de **Programação Orientada a Objetos (POO)** utilizando o microframework **Bottle** e **arquivos JSON como persistência**, sem banco de dados. Ideal para uso em disciplinas introdutórias de Engenharia de Software ou Ciência da Computação.
+Este é um projeto de template educacional voltado para o ensino de **Programação Orientada a Objetos (POO)** do Prof. Lucas Boaventura, Universidade de Brasília (UnB).
+
+Utiliza o microframework **Bottle**. Ideal para uso em disciplinas introdutórias de Engenharia de Software ou Ciência da Computação.
 
 ## 💡 Objetivo
 
-Fornecer uma base simples, extensível e didática para construção de aplicações web orientadas a objetos com backend Python, ideal para trabalhos finais ou exercícios práticos.
+Fornecer uma base simples, extensível e didática para construção de aplicações web orientadas a objetos com aplicações WEB em Python, ideal para trabalhos finais ou exercícios práticos.
 
 ---
 

@@ -40,3 +40,10 @@ class UserService:
 
     def delete_user(self, user_id):
         self.user_model.delete_user(user_id)
+    
+    def get_by_email(self, email):
+        for user in self.model.get_all():
+            if user.email == email:
+                return user
+        return None
+

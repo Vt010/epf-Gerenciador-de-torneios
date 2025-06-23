@@ -23,18 +23,28 @@ class User:
             'id': self.id,
             'name': self.name,
             'email': self.email,
-            'birthdate': self.birthdate
+            'birthdate': self.birthdate,
+            'role': getattr(self, 'role', 'comum')
         }
 
 
     @classmethod
     def from_dict(cls, data):
-        return cls(
-            id=data['id'],
-            name=data['name'],
-            email=data['email'],
-            birthdate=data['birthdate']
-        )
+        role = data.get('role', 'comum')
+        if role == 'admin':
+            return Admin(
+                id=data['id'],
+                name=data['name'],
+                email=data['email'],
+                birthdate=data['birthdate']
+                )
+        else:
+            return UsuarioComum(
+                id=data['id'],
+                name=data['name'],
+                email=data['email'],
+                birthdate=data['birthdate']
+            )
 
 
 class UserModel:
@@ -81,3 +91,15 @@ class UserModel:
     def delete_user(self, user_id: int):
         self.users = [u for u in self.users if u.id != user_id]
         self._save()
+
+
+class UsuarioComum(User):
+    def __init__(self, id, name, email, birthdate):
+        super().__init__(id, name, email, birthdate)
+        self.role = 'comum'
+
+
+class Admin(User):
+    def __init__(self, id, name, email, birthdate):
+        super().__init__(id, name, email, birthdate)
+        self.role = 'admin'    

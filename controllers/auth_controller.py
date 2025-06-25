@@ -4,7 +4,7 @@ from .base_controller import BaseController
 from services.user_service import UserService
 import json
 
-class AuthCOntroller(BaseController):
+class AuthController(BaseController):
     def __init__(self, app):
         super().__init__(app)
         self.user_service = UserService()
@@ -17,17 +17,17 @@ class AuthCOntroller(BaseController):
     def login(self):
         if request.method == 'GET':
             #Se for GET, apenas renderiza o formulário de login
-            return self.render('login')
+            return self.render('login', error=None)
 
-        email = request.forms.get('email')  # Pega o e-mail digitado
-        user = self.user_service.get_by_email(email)  # Busca o usuário com esse e-mail
+        email = request.forms.get('email')  #Pega o e-mail digitado
+        user = self.user_service.get_by_email(email)  #Busca o usuário com esse e-mail
 
         if user:
-            # Se achou o usuário, converte os dados para dict e salva no cookie
+            #Se achou o usuário, converte os dados para dict e salva no cookie
             response.set_cookie('user', json.dumps(user.to_dict()), path='/')
-            redirect('/users')  # Redireciona para a lista de usuários (ou página principal)
+            redirect('/users')  #Redireciona para a lista de usuários (ou página principal)
         else:
-            return "Usuário não encontrado"   
+            return self.render('login', error="Usuário não encontrado")   
 
     def logout(self):
             response.delete_cookie('user')

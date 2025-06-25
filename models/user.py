@@ -1,21 +1,21 @@
 import json
 import os
-from dataclasses import dataclass, asdict
-from typing import List
+import hashlib   #Usei hash para guardar a senha de forma segura, evitando salvar a senha real e protegendo os dados do usuário
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 class User:
-    def __init__(self, id, name, email, birthdate):
+    def __init__(self, id, name, email, birthdate, password_hash=None):
         self.id = id
         self.name = name
         self.email = email
         self.birthdate = birthdate
+        self.password_hash = password_hash  # Armazenar a senha como hash
 
 
     def __repr__(self):
         return (f"User(id={self.id}, name='{self.name}', email='{self.email}', "
-                f"birthdate='{self.birthdate}'")
+                f"birthdate='{self.birthdate}')")
 
 
     def to_dict(self):
@@ -24,6 +24,7 @@ class User:
             'name': self.name,
             'email': self.email,
             'birthdate': self.birthdate,
+            'password_hash': self.password_hash,
             'role': getattr(self, 'role', 'comum')
         }
 
@@ -36,15 +37,27 @@ class User:
                 id=data['id'],
                 name=data['name'],
                 email=data['email'],
-                birthdate=data['birthdate']
+                birthdate=data['birthdate'],
+                password_hash=data.get('password_hash')
                 )
         else:
             return UsuarioComum(
                 id=data['id'],
                 name=data['name'],
                 email=data['email'],
-                birthdate=data['birthdate']
+                birthdate=data['birthdate'],
+                password_hash=data.get('password_hash')
             )
+
+    def set_password(self, plain_password):
+        # Cria o hash da senha e salva
+        self.password_hash = hashlib.sha256(plain_password.encode()).hexdigest()
+
+    def check_password(self, plain_password):
+        # Confere se o hash bate com o armazenado
+        if not self.password_hash:
+            return False
+        return self.password_hash == hashlib.sha256(plain_password.encode()).hexdigest()
 
 
 class UserModel:
@@ -59,7 +72,7 @@ class UserModel:
             return []
         with open(self.FILE_PATH, 'r', encoding='utf-8') as f:
             data = json.load(f)
-            return [User(**item) for item in data]
+            return [User.from_dict(item) for item in data]
 
 
     def _save(self):
@@ -73,6 +86,9 @@ class UserModel:
 
     def get_by_id(self, user_id: int):
         return next((u for u in self.users if u.id == user_id), None)
+
+    def get_by_email(self, email: str):
+        return next((u for u in self.users if u.email == email), None)
 
 
     def add_user(self, user: User):
@@ -94,12 +110,12 @@ class UserModel:
 
 
 class UsuarioComum(User):
-    def __init__(self, id, name, email, birthdate):
-        super().__init__(id, name, email, birthdate)
+    def __init__(self, id, name, email, birthdate, password_hash=None):
+        super().__init__(id, name, email, birthdate, password_hash)
         self.role = 'comum'
 
 
 class Admin(User):
-    def __init__(self, id, name, email, birthdate):
-        super().__init__(id, name, email, birthdate)
-        self.role = 'admin'    
+    def __init__(self, id, name, email, birthdate, password_hash=None):
+        super().__init__(id, name, email, birthdate, password_hash)
+        self.role = 'admin'

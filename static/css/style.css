@@ -17,10 +17,13 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: var(--text-color);
-  background-color: #f9f9f9;
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle at center, #1a1a1a, #000);
+  color: #fbd300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   padding: 0;
   margin: 0;
 }
@@ -34,4 +37,106 @@ body {
   border-radius: 8px;
   box-shadow: var(--shadow);
 }
+//Visual Login
+form {
+  background-color: #111;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+}
 
+//Título
+h2{
+  margin: 20px;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fbd300;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 10px;
+  margin: 15px;
+  border: 1px solid #fbd300;
+  border-radius: 8px;
+  background-color: #222;
+  color: white;
+  font-size: 14px;
+}
+
+input::placeholder{
+  color: #aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+button{
+  font-family: 'GamestationCond', sans-serif;
+  width: 100% 
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  letter-spacing: 2px;
+  background-color: #fbd300;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 35px;
+  cursor: pointer;
+  color: #111;
+  text-transform: uppercase;
+  transation: 0.3s;
+  height: 40px;
+}
+
+button:hover {
+  background-color: #ffe100;
+ }
+
+ p[style*="color:red"] {
+  background: #440000;
+  padding: 8px;
+  border-raius: 6px;
+  margin-bottom: 10px;
+ }
+
+ p a {
+  color: #fbd300;
+  text-decoration: none;
+  font-wheight: bold;
+  transition: 0.2s;
+ }
+
+ p a:hover {
+  text-decoration: underline;
+ }
+
+ .login-box {
+  background-color: #111;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+ }
+
+ /* Estilo da logo dentro do login-box */
+.login-box .logo {
+  max-width: 150px;
+  height: auto;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+@font-face {
+  font-family: 'GamestationCond';
+  src: url('/static/fonts/GamestationCond.otf') format('truetype');
+}

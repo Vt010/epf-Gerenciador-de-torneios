@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'GamestationCond';
+  src: url('/static/fonts/GamestationCond.otf') format('truetype');
+}
+
 /* Reset e Estilos Globais */
 :root {
   --primary-color: #3498db;
@@ -46,22 +51,33 @@ form {
   text-align: center;
   width: 100%;
   max-width: 350px;
+  display: block;
+  margin: 15px auto;
 }
 
-//Título
-h2{
-  margin: 20px;
-  font-size: 24px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #fbd300;
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fbd300;
+  color: #111;
+  font-family: 'GamestationCond', sans-serif;
+  font-size:  25px;
+  padding: 10px 0;
+  text-align: center;
+  letter-spacing: 2px;
+  z-index: 999;
 }
 
 input[type="email"],
 input[type="password"] {
+  font-family: 'GamestationCond', sans-serif;
+  letter-spacing: 2px;
+  font-size: 24px;
   width: 100%;
   padding: 12px 10px;
-  margin: 15px;
+  margin: 15px auto;
   border: 1px solid #fbd300;
   border-radius: 8px;
   background-color: #222;
@@ -130,13 +146,41 @@ button:hover {
 
  /* Estilo da logo dentro do login-box */
 .login-box .logo {
-  max-width: 150px;
+  max-width: 200px;
   height: auto;
   margin: 0 auto 20px auto;
   display: block;
 }
 
-@font-face {
-  font-family: 'GamestationCond';
-  src: url('/static/fonts/GamestationCond.otf') format('truetype');
+.login-box p:not(.slogan) {
+  font-family: 'GamestationCond', sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
 }
+
+.slogan{
+  font-family: 'GamestationCond', sans-serif;
+  font-size: 24px;
+  color: #fbd300;
+  margin-top: 10px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.register-link {
+  font-family: 'GamestationCond', sans-serif;
+  font-size: 20px !important;
+  margin-top: 25px !important;
+  color: #fbd300;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.top-icon {
+  height: 55px;      /* ou o tamanho que quiser */
+  width: auto;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+

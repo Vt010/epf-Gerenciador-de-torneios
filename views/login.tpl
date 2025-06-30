@@ -6,23 +6,31 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h2>Login</h2>
 
     % if error:
     <p style="color:red;">{{error}}</p>
     % end
 
+    <div class="top-bar">
+    <img src="/static/img/Icone-esquerdo1.png" alt="Ícone Esquerda" class="top-icon">
+    Gaming Clash! Um lugar onde você e seus amigos batalham pela glória da vitória! 
+    <img src="/static/img/icone-direito1.png" alt="Ícone Direito" class="top-icon">
+</div>
+
     <div class="login-box">
-        <img src="/static/img/GamingClash.png" alt="Logo do Projeto class="logo">
+        <img src="/static/img/GamingClash.png" alt="Logo do Projeto" class="logo">
+        <p class="slogan">DE JOGADORES, PARA CAMPEÕES!</p>
 
         <form method="post" action="/login">
             <input type="email" name="email" placeholder="Email" required><br>
             <input type="password" name="password" placeholder="Senha" required><br>
             <button type="submit">Login</button> 
         </form>
+
+        <p class="register-link">Não tem conta? <a href="/register">Cadastre-se</a></p>
+
     </div>
 
-    <p>Não tem conta? <a href="/register">Cadastre-se</a></p>
 
 </body>
 </html>

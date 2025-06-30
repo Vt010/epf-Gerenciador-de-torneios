@@ -1,0 +1,16 @@
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+ p[style*="color:red"] {
+  background: #440000;
+  padding: 8px;
+  border-raius: 6px;
+  margin-bottom: 10px;
+ }

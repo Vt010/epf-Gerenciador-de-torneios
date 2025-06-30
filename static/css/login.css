@@ -1,0 +1,72 @@
+form {
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.login-box {
+  background-color: #111;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+ }
+
+ /* Estilo da logo dentro do login-box */
+.login-box .logo {
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+.login-box p:not(.slogan) {
+  font-family: 'GamestationCond', sans-serif;
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+}
+
+.slogan{
+  font-family: 'GamestationCond', sans-serif;
+  font-size: 24px;
+  color: #fbd300;
+  margin-top: 10px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.register-link {
+  font-family: 'GamestationCond', sans-serif;
+  font-size: 20px !important;
+  margin-top: 25px !important;
+  color: #fbd300;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+button{
+  font-family: 'GamestationCond', sans-serif;
+  width: 40%; 
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
+  letter-spacing: 2px;
+  background-color: #fbd300;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 30px;
+  cursor: pointer;
+  color: #111;
+  text-transform: uppercase;
+  transition: 0.3s;
+  margin: 0 auto;
+  display: block;
+
+}

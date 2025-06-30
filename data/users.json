@@ -3,6 +3,16 @@
         "id": 1,
         "name": "UsuÃ¡rio Teste",
         "email": "uduarioteste@email.com",
-        "birthdate": "1999-10-21"
+        "birthdate": "1999-10-21",
+        "password_hash": null,
+        "role": "comum"
+    },
+    {
+        "id": 2,
+        "name": "AlexandreVvF",
+        "email": "alexandrevilar.vf@gmail.com",
+        "birthdate": "",
+        "password_hash": "2ce46026029dba93a07614d6f5665875c6819ad994115d2f753d3da475d2de79",
+        "role": "comum"
     }
 ]

@@ -1,9 +1,13 @@
-from controllers.user_controller import user_routes
+from bottle import get
+from controllers.user_controller import user_routes, user_dashboard
 from controllers.auth_controller import AuthController
 
 def init_controllers(app):
-    #Inicializa o UserController (rotas de usuário)
+    # Subapp com rotas de /users
     app.mount('/users', user_routes)
 
-    #Inicializa o AuthController (rotas de login/logout)
+    # Classe AuthController cuida de /login, /logout e /register
     AuthController(app)
+
+    # Página protegida principal
+    get('/user')(user_dashboard)

@@ -1,6 +1,7 @@
-from bottle import Bottle, request
+from bottle import Bottle, request, template
 from .base_controller import BaseController
 from services.user_service import UserService
+from models.user import UserModel
 
 class UserController(BaseController):
     def __init__(self, app):
@@ -49,6 +50,18 @@ class UserController(BaseController):
         self.user_service.delete_user(user_id)
         self.redirect('/users')
 
+def user_dashboard():
+    user_id = request.get_cookie('user_id')
+    if not user_id:
+        return "Acesso negado. Faça login."
+
+    user_model = UserModel()
+    user = user_model.get_by_id(int(user_id))
+
+    if not user:
+        return "Usuário não encontrado"
+
+    return template('users', user=user)
 
 user_routes = Bottle()
 user_controller = UserController(user_routes)

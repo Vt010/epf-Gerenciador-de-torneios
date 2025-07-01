@@ -14,3 +14,57 @@
   border-raius: 6px;
   margin-bottom: 10px;
  }
+
+ .register-box {
+  background-color: #111;
+  padding: 50px 40px;
+  border-radius: 25px;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  margin: 80px auto;
+  text-align: center;
+}
+
+input[name="name"],
+input[type="email"],
+input[type="password"] {
+  font-family: 'GamestationCond', sans-serif;
+  width: 100%;
+  padding: 15px 20px;
+  margin: 15px 0;
+  border: 2px solid #fbd300;
+  border-radius: 999px;
+  background-color: #2a2a2a;
+  color: white;
+  font-size: 18px;
+  outline: none;
+  letter-spacing: 2px;
+  font-size: 15px;
+}
+
+button {
+  font-family: 'GamestationCond', sans-serif;
+  background-color: #fbd300;
+  border: none;
+  color: #111;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 15px 40px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 30px;
+}
+
+button:hover {
+  background-color: #ffe100;
+}
+
+.titulo-cadastro {
+  font-family: 'GamestationCond', sans-serif;
+  font-size: 38px;
+  color: #fbd300;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+}

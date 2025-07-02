@@ -91,5 +91,23 @@ p a:hover {
   margin: 0 10px;
 }
 
+.home-button {
+  position: absolute;
+  left: 20px;
+  font-family: 'GamestationCond', sans-serif;
+  color: #111;
+  background-color: transparent;
+  border: 2px solid #111;
+  padding: auto 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.home-button:hover {
+  background-color: #111;
+  color: #fbd300;
+}
+
 
   

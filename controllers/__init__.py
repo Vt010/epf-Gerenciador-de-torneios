@@ -1,4 +1,5 @@
-from bottle import get
+import bottle
+from bottle import get, template
 from controllers.user_controller import user_routes, user_dashboard
 from controllers.auth_controller import AuthController
 
@@ -11,3 +12,8 @@ def init_controllers(app):
 
     # Página protegida principal
     get('/user')(user_dashboard)
+    
+ # Página inicial
+    @app.route('/')
+    def home():
+        return template('home')

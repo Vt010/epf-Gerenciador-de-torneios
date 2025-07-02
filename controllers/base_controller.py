@@ -1,4 +1,5 @@
-from bottle import static_file
+from bottle import static_file, request 
+import json
 
 class BaseController:
     def __init__(self, app):
@@ -39,3 +40,18 @@ class BaseController:
         """Método auxiliar para redirecionamento"""
         from bottle import redirect as bottle_redirect
         return bottle_redirect(path)
+
+    def get_current_user(self):
+            """Lê o cookie de autenticação e retorna o usuário como dicionário"""
+            from bottle import request
+            import json
+
+            user_cookie = request.get_cookie('user')
+            if not user_cookie:
+                return None
+
+            try:
+                user_data = json.loads(user_cookie)
+                return user_data  # retorna como dict mesmo
+            except:
+                return None

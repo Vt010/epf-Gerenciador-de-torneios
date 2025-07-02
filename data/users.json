@@ -1,11 +1,11 @@
 [
     {
         "id": 1,
-        "name": "UsuÃ¡rio Teste",
-        "email": "uduarioteste@email.com",
-        "birthdate": "1999-10-21",
-        "password_hash": null,
-        "role": "comum"
+        "name": "JoÃ£o Vitor Tavares de SÃ¡ Lima",
+        "email": "joaovtvlima@gmail.com",
+        "birthdate": "",
+        "password_hash": "d1176bcc6520cfde82bfeebb19885c8ad22c2fd19cb703696c9863a8c07ee348",
+        "role": "admin"
     },
     {
         "id": 2,
@@ -13,6 +13,6 @@
         "email": "alexandrevilar.vf@gmail.com",
         "birthdate": "",
         "password_hash": "2ce46026029dba93a07614d6f5665875c6819ad994115d2f753d3da475d2de79",
-        "role": "comum"
+        "role": "admin"
     }
 ]

@@ -1,5 +1,5 @@
 import json
-import os
+import os  #biblioteca QUe serve para lidar com operações de sistema, como descobrir onde estão os arquivos e caminhos validos entre pastas
 import hashlib   #Usei hash para guardar a senha de forma segura, evitando salvar a senha real e protegendo os dados do usuário
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
@@ -59,6 +59,16 @@ class User:
             return False
         return self.password_hash == hashlib.sha256(plain_password.encode()).hexdigest()
 
+class UsuarioComum(User):
+    def __init__(self, id, name, email, birthdate, password_hash=None):
+        super().__init__(id, name, email, birthdate, password_hash)
+        self.role = 'comum'
+
+
+class Admin(User):
+    def __init__(self, id, name, email, birthdate, password_hash=None):
+        super().__init__(id, name, email, birthdate, password_hash)
+        self.role = 'admin'
 
 class UserModel:
     FILE_PATH = os.path.join(DATA_DIR, 'users.json')
@@ -106,16 +116,3 @@ class UserModel:
 
     def delete_user(self, user_id: int):
         self.users = [u for u in self.users if u.id != user_id]
-        self._save()
-
-
-class UsuarioComum(User):
-    def __init__(self, id, name, email, birthdate, password_hash=None):
-        super().__init__(id, name, email, birthdate, password_hash)
-        self.role = 'comum'
-
-
-class Admin(User):
-    def __init__(self, id, name, email, birthdate, password_hash=None):
-        super().__init__(id, name, email, birthdate, password_hash)
-        self.role = 'admin'

@@ -1,4 +1,4 @@
-from bottle import request, response, redirect, template 
+from bottle import Bottle, request, response, redirect, template 
 #request para ler formulários, response para cookies, redirect para redirecionar páginas
 from .base_controller import BaseController
 from services.user_service import UserService
@@ -24,34 +24,35 @@ class AuthController(BaseController):
         email = request.forms.get('email')  #Pega o e-mail digitado
         user = self.user_service.get_by_email(email)  #Busca o usuário com esse e-mail
 
-        if user:
-            #Se achou o usuário, converte os dados para dict e salva no cookie
-            response.set_cookie('user', json.dumps(user.to_dict()), path='/')
-            redirect('/users')  #Redireciona para a lista de usuários (ou página principal)
-        else:
-            return self.render('login', error="Usuário não encontrado")   
+        password = request.forms.get('password')
 
+        if not user or not user.check_password(password):
+            return self.render('login', error="Email ou senha inválidos")
+        # Login bem-sucedido → salva no cookie
+        response.set_cookie('user', json.dumps(user.to_dict()), path='/')
+        return redirect('/torneios')
+    
     def logout(self):
             response.delete_cookie('user')
             redirect('/login')
 
-    def login_get():
-        return template('login')
+    # def login_get():
+    #     return template('login')
 
-    def login_post():
-        form = request.forms
-        email = form.get('email')
-        password = form.get('password')
+    # def login_post():
+    #     form = request.forms
+    #     email = form.get('email')
+    #     password = form.get('password')
 
-        user_model = UserModel()
-        user = user_model.get_by_email(email)
+    #     user_model = UserModel()
+    #     user = user_model.get_by_email(email)
 
-        if not user or not user.check_password(password):
-            return "Email ou senha inválidos"
+    #     if not user or not user.check_password(password):
+    #         return "Email ou senha inválidos"
 
-        # Autenticado → setar cookie simples com ID
-        response.set_cookie('user_id', str(user.id))
-        return redirect('/user')
+    #     # Autenticado → setar cookie simples com ID
+    #     response.set_cookie('user_id', str(user.id))
+    #     return redirect('/torneios')
 
     def register(self):
         if request.method == 'GET':
@@ -80,4 +81,4 @@ class AuthController(BaseController):
 
 
 
-auth_routes = AuthController
+auth_routes = AuthController(Bottle())

@@ -17,6 +17,8 @@ class UserController(BaseController):
         self.app.route('/users/add', method=['GET', 'POST'], callback=self.add_user)
         self.app.route('/users/edit/<user_id:int>', method=['GET', 'POST'], callback=self.edit_user)
         self.app.route('/users/delete/<user_id:int>', method='POST', callback=self.delete_user)
+        self.app.route('/dashboard', method='GET', callback=self.dashboard)
+
 
 
     def list_users(self):
@@ -49,6 +51,16 @@ class UserController(BaseController):
     def delete_user(self, user_id):
         self.user_service.delete_user(user_id)
         self.redirect('/users')
+        
+    def dashboard(self):
+        import json
+        user_cookie = request.get_cookie('user')
+        if not user_cookie:
+            return self.redirect('/login')
+
+        user_data = json.loads(user_cookie)
+        return template('dashboard', user=user_data)
+
 
 def user_dashboard():
     user_id = request.get_cookie('user_id')

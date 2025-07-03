@@ -30,7 +30,7 @@ class AuthController(BaseController):
             return self.render('login', error="Email ou senha inválidos")
         # Login bem-sucedido → salva no cookie
         response.set_cookie('user', json.dumps(user.to_dict()), path='/')
-        return redirect('/torneios')
+        return redirect('/dashboard')
     
     def logout(self):
             response.delete_cookie('user')

@@ -19,20 +19,30 @@
 
     <div class="card-grid">
 
+
       <a href="/torneios" class="card">
         <h3>Torneios</h3>
         <p>Visualizar todos os campeonatos disponíveis.</p>
       </a>
+
+      <a href="/perfil" class="card">
+        <h3>Perfil</h3>
+        <p>Visualize e edite suas informações.</p>
+      </a>
+
+
 
       % if user.role == 'admin':
       <a href="/torneios/criar" class="card admin">
         <h3>Criar Torneios</h3>
         <p>Adicionar novos campeonatos ao sistema.</p>
       </a>
+
       <a href="/torneios/editar" class="card admin">
         <h3>Editar Torneios</h3>
         <p>Modificar campeonatos existentes.</p>
       </a>
+
       % else:
       <div class="card disabled">
         <h3>Criar Torneios</h3>
@@ -44,12 +54,7 @@
       </div>
       % end
 
-      <a href="/perfil" class="card">
-        <h3>Perfil</h3>
-        <p>Visualize e edite suas informações.</p>
-      </a>
-
-      <a href="/sobre" class="card">
+      <a href="/sobre" class="card full-center">
         <h3>Sobre</h3>
         <p>Informações sobre o projeto Gaming Clash.</p>
       </a>

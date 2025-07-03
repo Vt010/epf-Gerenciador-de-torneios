@@ -14,5 +14,13 @@
         "birthdate": "",
         "password_hash": "2ce46026029dba93a07614d6f5665875c6819ad994115d2f753d3da475d2de79",
         "role": "admin"
+    },
+    {
+        "id": 3,
+        "name": "Jose",
+        "email": "xandevilar.vf@gmail.com",
+        "birthdate": "",
+        "password_hash": "8d3104b8df9ac9a6724c0f237589bfd73d2ed04a5afc0cd06e319a1c27131dd2",
+        "role": "comum"
     }
 ]

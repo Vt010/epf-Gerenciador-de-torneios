@@ -33,7 +33,7 @@ class User:
     def from_dict(cls, data):
         role = data.get('role', 'comum')
         if role == 'admin':
-            return Admin(
+            return Administrador(
                 id=data['id'],
                 name=data['name'],
                 email=data['email'],
@@ -60,13 +60,13 @@ class User:
         return self.password_hash == hashlib.sha256(plain_password.encode()).hexdigest()
 
 class UsuarioComum(User):
-    def __init__(self, id, name, email, birthdate, password_hash=None):
+    def __init__(self, id, name, email, birthdate, password_hash=None, role=None):
         super().__init__(id, name, email, birthdate, password_hash)
         self.role = 'comum'
 
 
-class Admin(User):
-    def __init__(self, id, name, email, birthdate, password_hash=None):
+class Administrador(User):
+    def __init__(self, id, name, email, birthdate, password_hash=None, role=None):
         super().__init__(id, name, email, birthdate, password_hash)
         self.role = 'admin'
 

@@ -42,16 +42,16 @@ class BaseController:
         return bottle_redirect(path)
 
     def get_current_user(self):
-            """Lê o cookie de autenticação e retorna o usuário como dicionário"""
-            from bottle import request
-            import json
+        from models.user import UsuarioComum, Administrador
 
-            user_cookie = request.get_cookie('user')
-            if not user_cookie:
-                return None
+        user_json = request.get_cookie('user')
+        if not user_json:
+            return None
 
-            try:
-                user_data = json.loads(user_cookie)
-                return user_data  # retorna como dict mesmo
-            except:
-                return None
+        user_dict = json.loads(user_json)
+        role = user_dict.get('role')
+
+        if role == 'admin':
+            return Administrador.from_dict(user_dict)
+        else:
+            return UsuarioComum.from_dict(user_dict)

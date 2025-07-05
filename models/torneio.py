@@ -1,34 +1,26 @@
-import json
-import os
-
-DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
-
 class Torneio:
-    def __init__(self, id, nome, jogo, maxTimes, status='ativo', timesInscritos=None):
+    def __init__(self, id, nome, jogo, max_times, times=None):
         self.id = id
         self.nome = nome
         self.jogo = jogo
-        self.maxTimes = maxTimes
-        self.status = status
-        self.timesInscritos = timesInscritos or []
+        self.max_times = max_times  # 8 ou 16
+        self.times = times if times else []
 
     def to_dict(self):
         return {
             'id': self.id,
             'nome': self.nome,
             'jogo': self.jogo,
-            'maxTimes': self.maxTimes,
-            'status': self.status,
-            'timesInscritos': self.timesInscritos
+            'max_times': self.max_times,
+            'times': self.times
         }
 
-    @classmethod
-    def from_dict(cls, data):
-        return cls(
+    @staticmethod
+    def from_dict(data):
+        return Torneio(
             id=data['id'],
             nome=data['nome'],
             jogo=data['jogo'],
-            maxTimes=data['maxTimes'],
-            status=data.get('status', 'ativo'),
-            timesInscritos=data.get('timesInscritos', [])
+            max_times=data['max_times'],
+            times=data.get('times', [])
         )

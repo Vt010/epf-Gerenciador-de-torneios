@@ -21,11 +21,12 @@ class TorneioModel:
         with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
             json.dump([t.to_dict() for t in self.torneios], f, indent=4, ensure_ascii=False)
 
-    def get_all(self):
-        return self.torneios
+    def get_by_id(self, id):
+        return next((t for t in self.torneios if t.id == id), None)
 
-    def get_by_id(self, torneio_id):
-        return next((t for t in self.torneios if t.id == torneio_id), None)
+    def save_all(self):
+        with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
+            json.dump([t.to_dict() for t in self.torneios], f, indent=4)
 
     def add(self, torneio: Torneio):
         self.torneios.append(torneio)

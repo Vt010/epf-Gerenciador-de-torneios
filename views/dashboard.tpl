@@ -33,12 +33,12 @@
 
 
       % if user.role == 'admin':
-      <a href="/torneios/criar" class="card admin">
+      <a href="/torneios/create" class="card admin">
         <h3>Criar Torneios</h3>
         <p>Adicionar novos campeonatos ao sistema.</p>
       </a>
 
-      <a href="/torneios/editar" class="card admin">
+      <a href="/torneios/edit" class="card admin">
         <h3>Editar Torneios</h3>
         <p>Modificar campeonatos existentes.</p>
       </a>

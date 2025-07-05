@@ -1,56 +1,28 @@
-from models.torneio import Torneio
-from models.torneioModel import TorneioModel
+import os
 import json
-from bottle import request
+from models.torneio import Torneio
+
+DATA_PATH = './data/torneios.json'
 
 class TorneioService:
     def __init__(self):
-        self.model = TorneioModel()
+        if not os.path.exists(DATA_PATH):
+            with open(DATA_PATH, 'w') as f:
+                json.dump([], f)
+
+    def salvar(self, torneios):
+        with open(DATA_PATH, 'w') as f:
+            json.dump([t.to_dict() for t in torneios], f)
 
     def get_all(self):
-        return self.model.get_all()
+        with open(DATA_PATH, 'r') as f:
+            data = json.load(f)
+            return [Torneio.from_dict(d) for d in data]
 
-    def get_by_id(self, torneioId):
-        return self.model.get_by_id(torneioId)
-
-    def criar_torneio(self):
-        user_cookie = request.get_cookie('user')
-        if not user_cookie:
-            return "Não autorizado"
-
-        user_data = json.loads(user_cookie)
-        if user_data.get('role') != 'admin':
-            return "Apenas administradores podem criar torneios"
-
-        nome = request.forms.get('nome')
-        jogo = request.forms.get('jogo')
-        tipo = request.forms.get('tipo')  #"8" ou "16"
-
-        maxTimes = 8 if tipo == "8" else 16
-        novoId = len(self.model.get_all()) + 1
-
-        torneio = Torneio(
-            id=novoId,
-            nome=nome,
-            jogo=jogo,
-            maxTimes=maxTimes
-        )
-
-        self.model.add(torneio)
-
-    def inscreverTime(self, torneioId, timeNome):
-        torneio = self.model.get_by_id(torneioId)
-        if not torneio:
-            return "Torneio não encontrado"
-
-        if torneio.status != 'ativo':
-            return "Torneio encerrado"
-
-        if len(torneio.timesInscritos) >= torneio.maxTimes:
-            return "Torneio cheio"
-
-        if timeNome in torneio.timesInscritos:
-            return "Time já inscrito"
-
-        torneio.timesInscritos.append(timeNome)
-        self.model.update(torneio)
+    def criar_torneio(self, nome, jogo, qtd_times):
+        torneios = self.get_all()
+        novo_id = max([t.id for t in torneios], default=0) + 1
+        novo = Torneio(novo_id, nome, jogo, int(qtd_times))
+        torneios.append(novo)
+        self.salvar(torneios)
+        return novo

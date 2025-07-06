@@ -1,0 +1,12 @@
+#logo-container {
+    margin-top: 15px;
+    text-align: center;
+}
+#logo-jogo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #111;
+    padding: 8px;
+}

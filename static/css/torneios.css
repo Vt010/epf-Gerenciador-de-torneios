@@ -1,0 +1,107 @@
+body.torneios-page {
+    background-color: #0b0b0b;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.top-bar {
+    background-color: #FFD700;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #000;
+    position: relative;
+}
+
+.voltar {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: #000;
+    color: #FFD700;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.torneios-container {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.titulo-pagina {
+    font-size: 2.5rem;
+    color: #FFD700;
+}
+
+.subtitulo-pagina {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #ccc;
+}
+
+.cards-torneios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    margin-bottom: 40px;
+}
+
+.card-torneio {
+    background-color: #111;
+    border: 2px solid #FFD700;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.card-torneio:hover {
+    transform: scale(1.05);
+}
+
+.titulo-torneio {
+    font-size: 1.3rem;
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+
+.descricao-torneio {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+.btn-detalhes {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #FFD700;
+    color: #000;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.btn-criar {
+    background-color: #9d0000;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.42);
+}
+
+.logo-jogo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}

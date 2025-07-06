@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <title>Criar Novo Torneio</title>
   <link href="/static/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #logo-preview {
+      width: 100px;
+      height: auto;
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div class="container mt-5">
@@ -17,7 +25,13 @@
 
       <div class="mb-3">
         <label for="jogo" class="form-label">Jogo</label>
-        <input type="text" id="jogo" name="jogo" class="form-control" required>
+        <select id="jogo" name="jogo" class="form-select" onchange="atualizarLogo()" required>
+          <option value="" disabled selected>Selecione um jogo</option>
+          % for jogo in jogos:
+            <option value="{{jogo['nome']}}" data-logo="/static/img/{{jogo['logo']}}">{{jogo['nome']}}</option>
+          % end
+        </select>
+        <img id="logo-preview" src="" alt="Logo do jogo" style="display:none;">
       </div>
 
       <div class="mb-3">
@@ -36,5 +50,21 @@
       <a href="/torneios" class="btn btn-secondary">Cancelar</a>
     </form>
   </div>
+
+  <script>
+    function atualizarLogo() {
+      const select = document.getElementById("jogo");
+      const logo = document.getElementById("logo-preview");
+      const selectedOption = select.options[select.selectedIndex];
+      const logoUrl = selectedOption.getAttribute("data-logo");
+
+      if (logoUrl) {
+        logo.src = logoUrl;
+        logo.style.display = "block";
+      } else {
+        logo.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>

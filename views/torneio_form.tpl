@@ -11,7 +11,9 @@
   <div class="torneio-container">
     <h1>CRIAR NOVO TORNEIO</h1>
 
+
   <form action="{{ '/torneios/' + str(torneio.id) + '/editar' if torneio else '/torneios/create' }}" method="post">
+
       <div class="form-topo">
   <div class="form-campos">
     <div class="input-group">

@@ -17,11 +17,10 @@ class TorneioController(BaseController):
         
          # Dicionário de logos por nome do jogo
         logos = {
-                "League of Legends": "lol",
-                "LoL": "lol",
-                "CS2": "cs2",
-                "Counter-Strike 2": "cs2",
-                "Valorant": "valorant",
+                "league of legends": "lol",
+                "cs2": "cs2",
+                "counter-strike 2": "cs2",
+                "valorant": "valorant",
 }
 
     # Cria um campo adicional em cada torneio com o nome da imagem

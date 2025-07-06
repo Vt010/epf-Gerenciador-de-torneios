@@ -9,8 +9,8 @@
 <body class="torneios-page">
 
     <header class="top-bar">
-        <h1>Gaming Clash - Torneios</h1>
-        <a href="/dashboard class="voltar"> Voltar ao Dashboard</a>
+        <a href="/dashboard" class="voltar"> Voltar ao Dashboard</a>
+        <h1>Torneios Existentes</h1>
     </header>
     
     <main class="torneios-container">
@@ -20,7 +20,7 @@
         <div class="cards-torneios">
             % for torneio in torneios:
                 <div class="card-torneio">
-                    <img class="logo-torneio" src="/static/img/{{torneio.jogo}}.png" alt="{{torneio.jogo}} Logo">
+                    <img class="logo-torneio" src="/static/img/{{torneio.logo}}.png" alt="{{torneio.jogo}} Logo">
                     <h3 class="Titulo-torneio">{{ torneio.nome }}</h3>
                     <p class="descricao-torneio">Máx Times: {{ torneio.max_times }}</p>
                     <a href="/torneios/{{torneio.id}}" class="btn-detalhes">Ver Detalhes</a>

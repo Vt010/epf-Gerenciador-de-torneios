@@ -8,23 +8,41 @@ body.torneios-page {
 
 .top-bar {
     background-color: #FFD700;
-    padding: 20px;
+    padding: 12px 20px;
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #000;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-bar h1 {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.6rem;
 }
 
 .voltar {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    background-color: #000;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: black;
     color: #FFD700;
-    padding: 8px 16px;
+    padding: 6px 14px;
     text-decoration: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border: 2px solid #FFD700;
+    transition: background 0.3s;
+}
+
+.voltar:hover {
+    background-color: #FFD700;
+    color: black;
 }
 
 .torneios-container {
@@ -57,9 +75,22 @@ body.torneios-page {
     border-radius: 12px;
     padding: 20px;
     width: 100%;
-    max-width: 300px;
+    max-width: 250px; /* card menor */
     box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
     transition: transform 0.3s;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+}
+
+.logo-torneio {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
 }
 
 .card-torneio:hover {
@@ -99,9 +130,3 @@ body.torneios-page {
     box-shadow: 0 0 8px rgba(255, 0, 0, 0.42);
 }
 
-.logo-jogo {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-bottom: 10px;
-}

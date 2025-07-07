@@ -1,0 +1,179 @@
+[1mdiff --git a/controllers/__init__.py b/controllers/__init__.py[m
+[1mindex 58f3126..89d8145 100644[m
+[1m--- a/controllers/__init__.py[m
+[1m+++ b/controllers/__init__.py[m
+[36m@@ -4,7 +4,6 @@[m [mfrom controllers.user_controller import user_routes, user_dashboard[m
+ from controllers.auth_controller import AuthController, auth_routes[m
+ from controllers.dashboard_controller import DashboardController[m
+ from controllers.torneio_controller import TorneioController[m
+[31m-from controllers.time_controller import TimeController[m
+ [m
+ def init_controllers(app):[m
+     # Subapp com rotas de /users[m
+[36m@@ -17,7 +16,6 @@[m [mdef init_controllers(app):[m
+     TorneioController(app)[m
+     AuthController(app)[m
+     DashboardController(app)[m
+[31m-    TimeController(app)[m
+ [m
+     # Página protegida principal[m
+     get('/user')(user_dashboard)[m
+[1mdiff --git a/controllers/base_controller.py b/controllers/base_controller.py[m
+[1mindex 573ea89..bf67436 100644[m
+[1m--- a/controllers/base_controller.py[m
+[1m+++ b/controllers/base_controller.py[m
+[36m@@ -11,12 +11,10 @@[m [mclass BaseController:[m
+         """Configura rotas básicas comuns a todos os controllers"""[m
+         self.app.route('/', method='GET', callback=self.home_redirect)[m
+         self.app.route('/helper', method=['GET'], callback=self.helper)[m
+[31m-        self.app.route('/sobre', method='GET', callback=self.sobre)[m
+[32m+[m
+         # Rota para arquivos estáticos (CSS, JS, imagens)[m
+         self.app.route('/static/<filename:path>', callback=self.serve_static)[m
+ [m
+[31m-    def sobre(self):[m
+[31m-        return self.render('sobre')[m
+ [m
+     def home_redirect(self):[m
+         """Redireciona a rota raiz para /users"""[m
+[1mdiff --git a/controllers/time_controller.py b/controllers/time_controller.py[m
+[1mdeleted file mode 100644[m
+[1mindex 99cbca1..0000000[m
+[1m--- a/controllers/time_controller.py[m
+[1m+++ /dev/null[m
+[36m@@ -1,40 +0,0 @@[m
+[31m-from bottle import request, redirect[m
+[31m-from .base_controller import BaseController[m
+[31m-from services.time_service import TimeService[m
+[31m-from models.time import Jogador[m
+[31m-[m
+[31m-class TimeController(BaseController):[m
+[31m-    def __init__(self, app):[m
+[31m-        super().__init__(app)[m
+[31m-        self.time_service = TimeService()[m
+[31m-        self.setup_routes()[m
+[31m-[m
+[31m-    def setup_routes(self):[m
+[31m-        self.app.route('/times/inscrever/<torneio_id:int>', method='GET', callback=self.exibir_formulario)[m
+[31m-        self.app.route('/times/inscrever', method='POST', callback=self.inscrever_time)[m
+[31m-[m
+[31m-    def exibir_formulario(self, torneio_id):[m
+[31m-        user = self.get_current_user()[m
+[31m-        if not user or user.role != 'comum':[m
+[31m-            return redirect('/login')[m
+[31m-        return self.render('time_form', torneio_id=torneio_id)[m
+[31m-[m
+[31m-    def inscrever_time(self):[m
+[31m-        user = self.get_current_user()[m
+[31m-        if not user or user.role != 'comum':[m
+[31m-            return redirect('/login')[m
+[31m-[m
+[31m-        nome = request.forms.get('nome')[m
+[31m-        torneio_id = int(request.forms.get('torneio_id'))[m
+[31m-        jogadores = [][m
+[31m-[m
+[31m-        for i in range(1, 7):[m
+[31m-            nome_jogador = request.forms.get(f'jogador_{i}')[m
+[31m-            if nome_jogador:[m
+[31m-                jogadores.append(Jogador(nome_jogador))[m
+[31m-[m
+[31m-        if len(jogadores) < 5:[m
+[31m-            return "Erro: pelo menos 5 jogadores são obrigatórios."[m
+[31m-[m
+[31m-        self.time_service.criar_time(nome, jogadores, user.id, torneio_id)[m
+[31m-        return redirect(f'/torneios')[m
+[1mdiff --git a/controllers/torneio_controller.py b/controllers/torneio_controller.py[m
+[1mindex b3bcb66..0e18b88 100644[m
+[1m--- a/controllers/torneio_controller.py[m
+[1m+++ b/controllers/torneio_controller.py[m
+[36m@@ -11,10 +11,6 @@[m [mclass TorneioController(BaseController):[m
+     def setup_routes(self):[m
+         self.app.route('/torneios', method='GET', callback=self.listar)[m
+         self.app.route('/torneios/create', method=['GET', 'POST'], callback=self.criar)[m
+[31m-        self.app.route('/torneios/editar', method='GET', callback=self.listar_para_edicao)[m
+[31m-        self.app.route('/torneios/<id:int>/editar', method='GET', callback=self.editar_form)[m
+[31m-        self.app.route('/torneios/<id:int>/editar', method='POST', callback=self.processar_edicao)[m
+[31m-        self.app.route('/torneios/<id:int>/excluir', method='POST', callback=self.excluir)[m
+ [m
+     def listar(self):[m
+         torneios = self.torneio_service.get_all()[m
+[36m@@ -47,62 +43,13 @@[m [mclass TorneioController(BaseController):[m
+                 {"nome": "Valorant", "logo": "valorant.png"},[m
+             # É só adicionar mais jogos aqui [m
+             ][m
+[31m-            return self.render('torneio_form', torneio=None, jogos=jogos_disponiveis)[m
+[32m+[m[32m            return self.render('torneio_form', jogos=jogos_disponiveis)[m
+[32m+[m
+         nome = request.forms.get('nome')[m
+         jogo = request.forms.get('jogo')[m
+[31m-        max_times = request.forms.get('max_times')[m
+[32m+[m[32m        max_times = request.forms.get('tipo')[m
+ [m
+         self.torneio_service.criar_torneio(nome, jogo, max_times)[m
+         return redirect('/torneios')[m
+ [m
+[31m-    def listar_para_edicao(self):[m
+[31m-        user = self.get_current_user()[m
+[31m-        if not user or user.role != 'admin':[m
+[31m-            return redirect ('/login')[m
+[31m-        [m
+[31m-        torneios = self.torneio_service.get_all()[m
+[31m-        return self.render('torneios_editar', torneios=torneios)[m
+[31m-    [m
+[31m-    def editar_form(self, id):[m
+[31m-        user = self.get_current_user()[m
+[31m-        if not user or user.role != 'admin':[m
+[31m-            return redirect('/login')[m
+[31m-[m
+[31m-        torneio = self.torneio_service.get_by_id(id)[m
+[31m-        logos = {[m
+[31m-            "league of legends": "lol",[m
+[31m-            "cs2": "cs2",[m
+[31m-            "counter-strike 2": "cs2",[m
+[31m-            "valorant": "valorant",[m
+[31m-        }[m
+[31m-[m
+[31m-        nome_jogo = torneio.jogo.strip().lower()[m
+[31m-        torneio.logo = logos.get(nome_jogo, "default")[m
+[31m-[m
+[31m-        jogos_disponiveis = [[m
+[31m-            {"nome": "League of Legends", "logo": "lol.png"},[m
+[31m-            {"nome": "CS2", "logo": "cs2.png"},[m
+[31m-            {"nome": "Valorant", "logo": "valorant.png"},[m
+[31m-        ][m
+[31m-        return self.render('torneio_form', torneio=torneio, jogos=jogos_disponiveis)[m
+[31m-[m
+[31m-    [m
+[31m-    def processar_edicao(self, id):[m
+[31m-        user = self.get_current_user()[m
+[31m-        if not user or user.role != 'admin':[m
+[31m-            return redirect('/login')[m
+[31m-[m
+[31m-        nome = request.forms.get('nome')[m
+[31m-        jogo = request.forms.get('jogo')[m
+[31m-        status = request.forms.get('status')[m
+[31m-        max_times = int(request.forms.get('max_times'))[m
+[31m-[m
+[31m-        self.torneio_service.atualizar_torneio(id, nome, jogo, status, max_times)[m
+[31m-        return redirect('/torneios/editar')[m
+[31m-    def excluir(self, id):[m
+[31m-        user = self.get_current_user()[m
+[31m-        if not user or user.role != 'admin':[m
+[31m-            return redirect('/login')[m
+ [m
+[31m-        self.torneio_service.remover_torneio(id)[m
+[31m-        return redirect('/torneios/editar')[m
+\ No newline at end of file[m
+[1mdiff --git a/data/times.json b/data/times.json[m
+[1mdeleted file mode 100644[m
+[1mindex 00605ec..0000000[m
+[1m--- a/data/times.json[m
+[1m+++ /dev/null[m
+[36m@@ -1,120 +0,0 @@[m
+[31m-[[m
+[31m-    {[m
+[31m-        "id": 1,[m
+[31m-        "nome": "time 01",[m
+[31m-        "jogadores": [[m
+[31m-            {[m
+[31m-                "nome": "vt"[m

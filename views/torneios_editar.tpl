@@ -3,40 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Torneios</title>
-    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/torneios.css">
 </head>
-<body class="container mt-5">
+<body class="torneios-page">
 
-    <h2 class="mb-4">Torneios Cadastrados</h2>
+    <header class="top-bar">
+        <a href="/dashboard" class="voltar">Voltar ao Dashboard</a>
+        <h1>Editar Torneios</h1>
+    </header>
 
-    % if torneios:
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Jogo</th>
-                    <th>Qtd Times</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                % for torneio in torneios:
-                    <tr>
-                        <td>{{ torneio.nome }}</td>
-                        <td>{{ torneio.jogo }}</td>
-                        <td>{{ torneio.qtd_times }}</td>
-                        <td>
-                            <a href="/torneios/editar/{{ torneio.id }}" class="btn btn-sm btn-primary">Editar</a>
-                        </td>
-                    </tr>
-                % end
-            </tbody>
-        </table>
-    % else:
-        <p>Nenhum torneio cadastrado.</p>
-    % end
+    <main class="torneios-container">
+        <h2 class="titulo-pagina">Gerenciar Torneios</h2>
 
-    <a href="/torneios" class="btn btn-secondary mt-3">Voltar</a>
+        <div class="cards-torneios">
+            % for torneio in torneios:
+                <div class="card-torneio">
+                    <h3 class="Titulo-torneio">{{ torneio.nome }}</h3>
+                    <p class="descricao-torneio">Jogo: {{ torneio.jogo }}</p>
+                    <p class="descricao-torneio">Máx. de Times: {{ torneio.max_times }}</p>
+
+                    <a href="/torneios/{{ torneio.id }}/editar" class="btn-detalhes">✏️ Editar</a>
+
+                    <form action="/torneios/{{ torneio.id }}/excluir" method="post" style="margin-top:10px;">
+                        <button type="submit" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir este torneio?')">
+                            🗑️ Excluir
+                        </button>
+                    </form>
+                </div>
+            % end
+        </div>
+
+        <a href="/torneios/create" class="btn-criar">+ Criar Novo Torneio</a>
+    </main>
 
 </body>
 </html>

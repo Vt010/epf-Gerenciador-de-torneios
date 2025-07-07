@@ -26,3 +26,30 @@ class TorneioService:
         torneios.append(novo)
         self.salvar(torneios)
         return novo
+    
+    def atualizar_torneio(self, id, nome, jogo, status, max_times):
+        torneios = self.get_all()  
+        for t in torneios:
+            if t.id == id:
+                t.nome = nome
+                t.jogo = jogo
+                t.status = status
+                t.max_times = max_times
+                break
+        self.salvar(torneios)
+
+    def remover_torneio(self, id):
+        torneios = self.get_all()  # pega todos os torneios
+        torneios = [t for t in torneios if t.id != id]  # remove o torneio com o id especificado
+        self.salvar(torneios)  # salva a lista atualizada
+
+
+    def get_by_id(self, torneio_id):
+        torneios = self.get_all()
+        for t in torneios:
+            if t.id == torneio_id:
+                return t
+        return None
+
+
+    

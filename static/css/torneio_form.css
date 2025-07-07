@@ -19,6 +19,7 @@ body {
 h1 {
   font-size: 2.5em;
   margin-bottom: 30px;
+  text-shadow: 0 0 5px #fdd835aa, 0 0 15px #fdd83566;
 }
 
 .input-group {
@@ -41,16 +42,6 @@ h1 {
   background-color: #1e1e1e;
   color: #fff;
   font-size: 1em;
-}
-
-.logo-preview-container {
-  margin: 20px 0;
-}
-
-.logo-preview-container img {
-  width: 150px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #fdd835;
 }
 
 .selecao-times {
@@ -93,7 +84,7 @@ h1 {
 
 .botoes-final {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 30px;
   margin-top: 40px;
@@ -126,3 +117,35 @@ h1 {
 .cancelar-link:hover {
   text-decoration: underline;
 }
+
+.form-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.form-campos {
+  flex: 1;
+  min-width: 300px;
+}
+
+.form-logo {
+  flex: 1;
+  text-align: center;
+}
+
+.form-logo img {
+  max-width: 100%;
+  width: 250px;
+  height: auto;
+  border-radius: 12px;
+  background: none;
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 25px #fdd835);
+}
+
+

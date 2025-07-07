@@ -23,7 +23,8 @@
                     <img class="logo-torneio" src="/static/img/{{torneio.logo}}.png" alt="{{torneio.jogo}} Logo">
                     <h3 class="Titulo-torneio">{{ torneio.nome }}</h3>
                     <p class="descricao-torneio">Máx Times: {{ torneio.max_times }}</p>
-                    <a href="/torneios/{{torneio.id}}" class="btn-detalhes">Ver Detalhes</a>
+                    <a href="/times/inscrever/{{ torneio.id }}" class="btn-detalhes">Inscrever Time</a>
+
                 </div>
             % end
         </div>

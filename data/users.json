@@ -22,13 +22,5 @@
         "birthdate": "",
         "password_hash": "8d3104b8df9ac9a6724c0f237589bfd73d2ed04a5afc0cd06e319a1c27131dd2",
         "role": "comum"
-    },
-    {
-        "id": 4,
-        "name": "jao",
-        "email": "jvitorsaflamengo@gmail.com",
-        "birthdate": "",
-        "password_hash": "ed2befb11499489e2570cb053f774b8ed93e89eddab3f78867a2a5f32c58845e",
-        "role": "comum"
     }
 ]

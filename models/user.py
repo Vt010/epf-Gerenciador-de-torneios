@@ -74,7 +74,6 @@ class UserModel:
     FILE_PATH = os.path.join(DATA_DIR, 'users.json')
 
     def __init__(self):
-        self.users = self._load()
         pass
 
 

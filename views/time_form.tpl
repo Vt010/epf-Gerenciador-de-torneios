@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Inscrever Time - Gaming Clash</title>
     <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/torneios.css">
+    <link rel="stylesheet" href="/static/css/time_form.css">
 </head>
 <body class="torneios-page">
 
@@ -37,7 +37,7 @@
             <label for="jogador_5">Nick do Jogador 5:</label>
             <input type="text" id="jogador_5" name="jogador_5" required>
 
-            <label for="jogador_6">Nick do Jogador 6 (opcional):</label>
+            <label for="jogador_6">Nick do Jogador 6 "reserva" (opcional):</label>
             <input type="text" id="jogador_6" name="jogador_6">
 
             <button type="submit" class="btn-criar">Confirmar Inscrição</button>

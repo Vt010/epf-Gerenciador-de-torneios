@@ -116,5 +116,28 @@
         ],
         "usuario_id": 5,
         "torneio_id": 1
+    },
+    {
+        "id": 6,
+        "nome": "Time Teu",
+        "jogadores": [
+            {
+                "nome": "Alex"
+            },
+            {
+                "nome": "Joao"
+            },
+            {
+                "nome": "Jorge"
+            },
+            {
+                "nome": "Alex Andre"
+            },
+            {
+                "nome": "Jose"
+            }
+        ],
+        "usuario_id": 3,
+        "torneio_id": 1
     }
 ]

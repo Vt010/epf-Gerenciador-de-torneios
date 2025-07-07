@@ -1,0 +1,110 @@
+body.torneios-page {
+  background-color: #0b0b0b;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.top-bar {
+  background-color: #FFD700;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 1.6rem;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.top-bar h1 {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.voltar {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: black;
+  color: #FFD700;
+  padding: 6px 14px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: 2px solid #FFD700;
+  transition: background 0.3s;
+}
+
+.voltar:hover {
+  background-color: #FFD700;
+  color: black;
+}
+
+.torneios-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #111;
+  border: 2px solid #FFD700;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.titulo-pagina {
+  text-align: center;
+  font-size: 2rem;
+  color: #FFD700;
+  margin-bottom: 30px;
+}
+
+.form-inscricao label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  margin-top: 20px;
+  color: #FFD700;
+}
+
+.form-inscricao input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.form-inscricao input[type="text"]:focus {
+  outline: none;
+  border-color: #fff;
+  box-shadow: 0 0 8px #FFD700;
+}
+
+.btn-criar {
+  margin-top: 30px;
+  background-color: #FFD700;
+  color: black;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  transition: background 0.3s, color 0.3s;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.btn-criar:hover {
+  background-color: #000;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+}

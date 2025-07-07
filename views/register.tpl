@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/static/css/register.css">
 </head>
 
-<body>
+<body class="register-page">
 <div class="top-bar">
     <a href="/" class="home-button"> HOME </a>
     <img src="/static/img/Icone-esquerdo1.png" alt="Ícone Esquerda" class="top-icon">

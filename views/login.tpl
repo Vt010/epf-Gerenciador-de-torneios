@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/static/css/login.css">
 </head>
 
-<body>
+<body class="login-page">
 
     % if error:
     <p style="color:red;">{{error}}</p>

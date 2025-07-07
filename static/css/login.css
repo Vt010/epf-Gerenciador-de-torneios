@@ -5,6 +5,13 @@ form {
   margin: 0 auto;
 }
 
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .login-box {
   background-color: #111;
   padding: 40px 30px;

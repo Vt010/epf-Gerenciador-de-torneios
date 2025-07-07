@@ -8,6 +8,14 @@
   box-shadow: var(--shadow);
 }
 
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
  p[style*="color:red"] {
   background: #440000;
   padding: 8px;

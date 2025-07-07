@@ -17,9 +17,10 @@ class AuthController(BaseController):
         self.app.route('/register', method=['GET', 'POST'], callback=self.register)
 
     def login(self):
+        
         if request.method == 'GET':
-            #Se for GET, apenas renderiza o formulário de login
-            return self.render('login', error=None)
+         #Se for GET, apenas renderiza o formulário de login
+         return self.render('login', error=None)
 
         email = request.forms.get('email')  #Pega o e-mail digitado
         user = self.user_service.get_by_email(email)  #Busca o usuário com esse e-mail
@@ -28,7 +29,7 @@ class AuthController(BaseController):
 
         if not user or not user.check_password(password):
             return self.render('login', error="Email ou senha inválidos")
-        # Login bem-sucedido → salva no cookie
+         # Login bem-sucedido → salva no cookie
         response.set_cookie('user', json.dumps(user.to_dict()), path='/')
         return redirect('/dashboard')
     
@@ -37,22 +38,22 @@ class AuthController(BaseController):
             redirect('/login')
 
     # def login_get():
-    #     return template('login')
+    #      return template('login')
 
     # def login_post():
-    #     form = request.forms
-    #     email = form.get('email')
-    #     password = form.get('password')
+    #      form = request.forms
+    #      email = form.get('email')
+    #      password = form.get('password')
 
-    #     user_model = UserModel()
-    #     user = user_model.get_by_email(email)
+    #      user_model = UserModel()
+    #      user = user_model.get_by_email(email)
 
-    #     if not user or not user.check_password(password):
-    #         return "Email ou senha inválidos"
+    #      if not user or not user.check_password(password):
+    #          return "Email ou senha inválidos"
 
-    #     # Autenticado → setar cookie simples com ID
-    #     response.set_cookie('user_id', str(user.id))
-    #     return redirect('/torneios')
+    #      # Autenticado → setar cookie simples com ID
+    #      response.set_cookie('user_id', str(user.id))
+    #      return redirect('/dashboard')
 
     def register(self):
         if request.method == 'GET':

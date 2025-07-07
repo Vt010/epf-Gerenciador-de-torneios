@@ -139,5 +139,28 @@
         ],
         "usuario_id": 3,
         "torneio_id": 1
+    },
+    {
+        "id": 7,
+        "nome": "time 1",
+        "jogadores": [
+            {
+                "nome": "j01"
+            },
+            {
+                "nome": "j02"
+            },
+            {
+                "nome": "jo3"
+            },
+            {
+                "nome": "jo4"
+            },
+            {
+                "nome": "jo5"
+            }
+        ],
+        "usuario_id": 4,
+        "torneio_id": 1
     }
 ]

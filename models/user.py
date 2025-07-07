@@ -75,6 +75,7 @@ class UserModel:
 
     def __init__(self):
         self.users = self._load()
+        pass
 
 
     def _load(self):
@@ -91,20 +92,23 @@ class UserModel:
 
 
     def get_all(self):
-        return self.users
+        return self._load()
 
 
     def get_by_id(self, user_id: int):
         return next((u for u in self.users if u.id == user_id), None)
 
     def get_by_email(self, email: str):
+        self.users = self._load()
         return next((u for u in self.users if u.email == email), None)
 
 
     def add_user(self, user: User):
-        self.users.append(user)
-        self._save()
-
+        users = self._load()
+        users.append(user)
+        with open(self.FILE_PATH,'w',encoding='utf-8')as f:
+            json.dump([u.to_dict() for u in users], f, indent=4, ensure_ascii=False) 
+        
 
     def update_user(self, updated_user: User):
         for i, user in enumerate(self.users):
@@ -112,7 +116,6 @@ class UserModel:
                 self.users[i] = updated_user
                 self._save()
                 break
-
 
     def delete_user(self, user_id: int):
         self.users = [u for u in self.users if u.id != user_id]

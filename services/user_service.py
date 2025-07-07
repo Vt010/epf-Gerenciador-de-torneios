@@ -24,7 +24,11 @@ class UserService:
 
 
     def get_by_id(self, user_id):
-        return self.user_model.get_by_id(user_id)
+        users = self.user_model.get_all()
+        for user in users:
+            if user.id == user_id:
+                return user
+        return None
 
 
     def edit_user(self, user):
@@ -43,7 +47,8 @@ class UserService:
         self.user_model.delete_user(user_id)
     
     def get_by_email(self, email):
-        for user in self.model.get_all():
+        users = self.user_model.get_all()
+        for user in users:
             if user.email == email:
                 return user
         return None

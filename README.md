@@ -4,10 +4,46 @@ Este é um projeto de template educacional voltado para o ensino de **Programaç
 
 Utiliza o microframework **Bottle**. Ideal para uso em disciplinas introdutórias de Engenharia de Software ou Ciência da Computação.
 
-## 💡 Objetivo
+📘 Projeto: Gerenciador de Torneios Gaming Clash
+Sistema web para gerenciamento de torneios de e-sports com funcionalidades voltadas para administradores e usuários comuns. Desenvolvido em Python com o microframework Bottle e arquitetura orientada a objetos.
 
-Fornecer uma base simples, extensível e didática para construção de aplicações web orientadas a objetos com aplicações WEB em Python, ideal para trabalhos finais ou exercícios práticos.
+## 🚀 Funcionalidades
 
+>👤 Autenticação
+    ->Registro e login de usuários com diferenciação de tipo:
+
+        .Administrador: acesso total
+
+        .Comum: apenas inscrição em torneios
+
+    ->Sessão via cookie simples (sem criptografia)
+
+🏆 Torneios
+
+>Administrador:
+
+    .Criar torneios (nome, jogo, quantidade máxima de times)
+
+    .   Editar torneios:
+
+        Alterar quantidade máxima de times
+
+        Excluir torneio
+
+>Usuário Comum
+
+    .Visualizar torneios ativos
+
+    .Inscrever time em torneio
+
+>🧑‍🤝‍🧑 Times
+    .Cada usuário comum pode cadastrar o time no torneio
+
+    Cada time contém:
+
+        Nome do time
+
+        De 5 a 6 jogadores (nicknames)
 ---
 
 ## 🗂 Estrutura de Pastas
@@ -30,37 +66,58 @@ poo-python-bottle-template/
 
 
 ---
+## 📘 Diagrama de Classes
 
-## 📁 Descrição das Pastas
+!Diagrama (static/img/diagrama.png)
++-------------------+
+|     UserModel     |
++-------------------+
+| - id              |
+| - nome            |
+| - email           |
+| - senha           |
+| - role            |
++-------------------+
 
-### `controllers/`
-Contém as classes responsáveis por lidar com as rotas da aplicação. Exemplos:
-- `user_controller.py`: rotas para listagem, adição, edição e remoção de usuários.
-- `base_controller.py`: classe base com utilitários comuns.
+           ▲
+           |
++---------------------+
+|  Administrador      |   
++---------------------+
+| (herda de UserModel)|
++---------------------+
++---------------------+
+|  UsuarioComum       |
++---------------------+
+| (herda de UserModel)|
++---------------------+
 
-### `models/`
-Define as classes que representam os dados da aplicação. Exemplo:
-- `user.py`: classe `User`, com atributos como `id`, `name`, `email`, etc.
++-------------------+
+|     Torneio       |
++-------------------+
+| - id              |
+| - nome            |
+| - jogo            |
+| - status          |
+| - max_times       |
++-------------------+
 
-### `services/`
-Responsável por salvar, carregar e manipular dados usando arquivos JSON. Exemplo:
-- `user_service.py`: contém métodos como `get_all`, `add_user`, `delete_user`.
++-------------------+
+|      Time         |
++-------------------+
+| - id              |
+| - nome            |
+| - jogadores[]     |
+| - usuario_id      |
+| - torneio_id      |
++-------------------+
 
-### `views/`
-Contém os arquivos `.tpl` utilizados pelo Bottle como páginas HTML:
-- `layout.tpl`: estrutura base com navegação e bloco `content`.
-- `users.tpl`: lista os usuários.
-- `user_form.tpl`: formulário para adicionar/editar usuário.
++-------------------+
+|     Jogador       |
++-------------------+
+| - nome            |
++-------------------+
 
-### `static/`
-Arquivos estáticos como:
-- `css/style.css`: estilos básicos.
-- `js/main.js`: scripts JS opcionais.
-- `img/BottleLogo.png`: exemplo de imagem.
-
-### `data/`
-Armazena os arquivos `.json` que simulam o banco de dados:
-- `users.json`: onde os dados dos usuários são persistidos.
 
 ---
 
@@ -100,6 +157,11 @@ Para adicionar novos modelos (ex: Atividades):
 
 ---
 
-## 🧠 Autor e Licença
-Projeto desenvolvido como template didático para disciplinas de Programação Orientada a Objetos, baseado no [BMVC](https://github.com/hgmachine/bmvc_start_from_this).
-Você pode reutilizar, modificar e compartilhar livremente.
+## ✅ Tecnologias Utilizadas
+    .Python 3.12
+
+    .Bottle
+
+    .HTML5 + CSS3
+
+    .Armazenamento em arquivos JSON

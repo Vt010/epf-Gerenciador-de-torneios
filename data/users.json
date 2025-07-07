@@ -22,29 +22,5 @@
         "birthdate": "",
         "password_hash": "8d3104b8df9ac9a6724c0f237589bfd73d2ed04a5afc0cd06e319a1c27131dd2",
         "role": "comum"
-    },
-    {
-        "id": 4,
-        "name": "JoÃ£o",
-        "email": "jvitorsaflamengo@gmail.com",
-        "birthdate": "",
-        "password_hash": "d1176bcc6520cfde82bfeebb19885c8ad22c2fd19cb703696c9863a8c07ee348",
-        "role": "comum"
-    },
-    {
-        "id": 5,
-        "name": "JoÃ£o",
-        "email": "jvitorsafla@outlook.com",
-        "birthdate": "",
-        "password_hash": "00f6112fe58387958ef80793a34746429f40c97fe7b51d6a576705acbf8fc6af",
-        "role": "comum"
-    },
-    {
-        "id": 6,
-        "name": "jao",
-        "email": "joao@gmail.com",
-        "birthdate": "",
-        "password_hash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
-        "role": "comum"
     }
 ]
